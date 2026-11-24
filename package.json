@@ -1,0 +1,33 @@
+{
+  "name": "xclipse-wordpress-mcp-server",
+  "version": "1.0.0",
+  "description": "Lightweight WordPress MCP Server (Core Lite — 18 tools: site info, posts, pages, media, categories, tags, comments) for Claude, Cursor, Gemini and other MCP clients",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "xclipse-wordpress-mcp-server": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:http": "node src/index.js --http",
+    "dev": "node --watch src/index.js",
+    "check": "node --check src/index.js && node --check src/core.js && node --check src/http.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "wordpress",
+    "wordpress-mcp",
+    "claude",
+    "cursor",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29",
+    "zod": "^4.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

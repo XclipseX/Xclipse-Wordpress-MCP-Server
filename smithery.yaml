@@ -1,0 +1,38 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - xclipseUrl
+      - xclipseApiKey
+    properties:
+      xclipseUrl:
+        type: string
+        title: WordPress Site URL
+        description: Root URL of your WordPress site (no trailing slash), e.g. https://example.com
+      xclipseApiKey:
+        type: string
+        title: Xclipse API Key
+        description: API key from WordPress Admin → Settings → Xclipse MCP Lite
+      xclipseCompact:
+        type: boolean
+        default: true
+        title: Compact JSON Responses
+        description: Strip empty fields from responses to save tokens
+  commandFunction:
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['src/index.js'],
+      env: {
+        XCLIPSE_URL: config.xclipseUrl,
+        XCLIPSE_API_KEY: config.xclipseApiKey,
+        XCLIPSE_COMPACT: config.xclipseCompact === false ? '0' : '1'
+      }
+    })
+  exampleConfig:
+    xclipseUrl: https://example.com
+    xclipseApiKey: your-api-key-here
+    xclipseCompact: true
